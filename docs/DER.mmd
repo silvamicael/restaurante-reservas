@@ -1,0 +1,20 @@
+erDiagram
+    CLIENTES ||--o{ RESERVAS : "realiza (1:N)"
+    CLIENTES {
+        int id PK "SERIAL"
+        varchar_120 nome "NOT NULL"
+        varchar_30 telefone
+        varchar_160 email
+        timestamp criado_em "DEFAULT now"
+    }
+    RESERVAS {
+        int id PK "SERIAL"
+        int cliente_id FK "NOT NULL -> clientes.id"
+        date data_reserva "NOT NULL"
+        time horario "NOT NULL"
+        int quantidade_pessoas "CHECK > 0"
+        varchar_20 status "pendente, confirmada, cancelada, concluida"
+        text observacoes
+        timestamp criado_em "DEFAULT now"
+        timestamp atualizado_em "DEFAULT now"
+    }
